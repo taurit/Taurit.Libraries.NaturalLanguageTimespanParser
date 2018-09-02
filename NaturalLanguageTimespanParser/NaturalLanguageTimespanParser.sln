@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalLanguageTimespanParser", "NaturalLanguageTimespanParser\NaturalLanguageTimespanParser.csproj", "{29FE8D31-AB91-492F-A084-A3A8FEBC4E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturalLanguageTimespanParser.UnitTests", "NaturalLanguageTimespanParser.UnitTests\NaturalLanguageTimespanParser.UnitTests.csproj", "{60C737DC-A8E0-4BE8-8D09-EA1D7BEA9C28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29FE8D31-AB91-492F-A084-A3A8FEBC4E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29FE8D31-AB91-492F-A084-A3A8FEBC4E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29FE8D31-AB91-492F-A084-A3A8FEBC4E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29FE8D31-AB91-492F-A084-A3A8FEBC4E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C737DC-A8E0-4BE8-8D09-EA1D7BEA9C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C737DC-A8E0-4BE8-8D09-EA1D7BEA9C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C737DC-A8E0-4BE8-8D09-EA1D7BEA9C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C737DC-A8E0-4BE8-8D09-EA1D7BEA9C28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A67CA41-26E6-4A4C-921B-2D1CA30EDDCB}
+	EndGlobalSection
+EndGlobal
