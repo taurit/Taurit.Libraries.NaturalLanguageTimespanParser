@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NaturalLanguageTimespanParser.UnitTests.CultureSpecificParsersTests
 {
     [TestClass]
-    public class TimespanParserTestsEn : TimespanParserTestsBase
+    public class TimespanParserTestsEn : TimespanParserCultureSpecificTestBase
     {
         [TestMethod]
-        public void When_MinutesAreDefined_Expect_DurationIsCorrectlyParsed()
+        public override void When_TimeInMinutesIsDefinedAsANumber_Expect_DurationCorrectlyParsed()
         {
             // Arrange
             var sut = CreateSystemUnderTest();
@@ -25,7 +26,7 @@ namespace NaturalLanguageTimespanParser.UnitTests.CultureSpecificParsersTests
             // Assert
             AssertAllDurationsEqual(TimeSpan.FromMinutes(45), results45Min);
         }
-        
+
         internal override ITimespanParser CreateSystemUnderTest()
         {
             var englishCulture = new CultureInfo("en");
