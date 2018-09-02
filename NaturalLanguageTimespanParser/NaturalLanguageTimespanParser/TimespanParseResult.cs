@@ -13,12 +13,12 @@ namespace NaturalLanguageTimespanParser
         public bool Success { get; }
         public TimeSpan Duration { get; }
 
-        public static TimespanParseResult CreateSuccess(TimeSpan duration)
+        internal static TimespanParseResult CreateSuccess(TimeSpan duration)
         {
             return new TimespanParseResult(true, duration);
         }
 
-        public static TimespanParseResult CreateFailure()
+        internal static TimespanParseResult CreateFailure()
         {
             return new TimespanParseResult(false, TimeSpan.Zero);
         }
