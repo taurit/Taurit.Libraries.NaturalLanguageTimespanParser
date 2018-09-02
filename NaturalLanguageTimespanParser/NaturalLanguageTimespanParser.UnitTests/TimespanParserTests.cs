@@ -1,5 +1,6 @@
 using System;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NaturalLanguageTimespanParser.UnitTests
@@ -23,51 +24,29 @@ namespace NaturalLanguageTimespanParser.UnitTests
         }
 
         [TestMethod]
-        public void When_MinutesAreDefinedInAbbreviatedForm_Expect_DurationIsCorrectlyParsed()
+        public void When_MinutesAreDefined_Expect_DurationIsCorrectlyParsed()
         {
             // Arrange
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Review english lesson @home 20m");
-            var parseResult2 = sut.Parse("Review english lesson @home 20M");
-            var parseResult3 = sut.Parse("Review english lesson @home 20 m");
-            var parseResult4 = sut.Parse("Review english lesson @home 20 M");
+            var results20Min = ParseMany(sut, new List<string>
+            {
+                "Review english lesson @home 20m",
+                "Review english lesson @home 20M",
+                "Review english lesson @home 20 m",
+                "Review english lesson @home 20 M"
+            });
+            var results45Min = ParseMany(sut, new List<string>
+            {
+                "@home Read for 45 minutes",
+                "@home Read for 45 MINUTES",
+                "@home Read for 45 MiNuTeS"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(20), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(20), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(20), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(20), parseResult4.Duration);
-        }
-
-        [TestMethod]
-        public void When_MinutesAreDefinedInFullForm_Expect_DurationIsCorrectlyParsed()
-        {
-            // Arrange
-            var sut = CreateSystemUnderTest();
-
-            // Act
-            var parseResult1 = sut.Parse("@home Read for 45 minutes");
-            var parseResult2 = sut.Parse("@home Read for 45 MINUTES");
-            var parseResult3 = sut.Parse("@home Read for 45 MiNuTeS");
-
-            // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(45), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(45), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(45), parseResult3.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(20), results20Min);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(45), results45Min);
         }
 
         [TestMethod]
@@ -127,30 +106,24 @@ namespace NaturalLanguageTimespanParser.UnitTests
         }
 
         [TestMethod]
-        public void When_HoursAreDefinedInAbbreviatedForm_Expect_DurationIsCorrectlyParsed()
+        public void When_HoursAreDefined_Expect_DurationIsCorrectlyParsed()
         {
             // Arrange
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Exercise @gym 1h");
-            var parseResult2 = sut.Parse("Exercise @gym 1H");
-            var parseResult3 = sut.Parse("Exercise @gym 1 H");
-            var parseResult4 = sut.Parse("Exercise @gym 1 h");
+            var results1H = ParseMany(sut, new List<string>
+            {
+                "Exercise @gym 1h",
+                "Exercise @gym 1H",
+                "Exercise @gym 1 h",
+                "Exercise @gym 1 H"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromHours(1), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromHours(1), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromHours(1), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromHours(1), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromHours(1), results1H);
         }
+
 
         [TestMethod]
         public void When_HourFractionIsDefinedInAbbreviatedForm_Expect_DurationIsCorrectlyParsed()
@@ -159,49 +132,16 @@ namespace NaturalLanguageTimespanParser.UnitTests
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Exercise @gym 0.5h");
-            var parseResult2 = sut.Parse("Exercise @gym 0.5H");
-            var parseResult3 = sut.Parse("Exercise @gym 0.5 H");
-            var parseResult4 = sut.Parse("Exercise @gym 0.5 h");
+            var results30Min = ParseMany(sut, new List<string>
+            {
+                "Exercise @gym 0.5h",
+                "Exercise @gym 0.5H",
+                "Exercise @gym 0.5 H",
+                "Exercise @gym 0.5 h"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult4.Duration);
-        }
-
-        [TestMethod]
-        public void When_HourFractionIsDefinedInAbbreviatedFormWithSemicolons_Expect_DurationIsCorrectlyParsed()
-        {
-            // Arrange
-            var sut = CreateSystemUnderTest();
-
-            // Act
-            var parseResult1 = sut.Parse("Exercise @gym 0.5h");
-            var parseResult2 = sut.Parse("Exercise @gym 0.5H");
-            var parseResult3 = sut.Parse("Exercise @gym 0.5 H");
-            var parseResult4 = sut.Parse("Exercise @gym 0.5 h");
-
-            // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(30), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(30), results30Min);
         }
 
         [TestMethod]
@@ -211,23 +151,16 @@ namespace NaturalLanguageTimespanParser.UnitTests
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Play drums (2h 30 m) @home");
-            var parseResult2 = sut.Parse("Play drums (2 H 30 M) @home");
-            var parseResult3 = sut.Parse("Play drums (2h 30 Min) @home");
-            var parseResult4 = sut.Parse("Play drums (2H 30 min) @home");
+            var results150Min = ParseMany(sut, new List<string>
+            {
+                "Play drums (2h 30 m) @home",
+                "Play drums (2 H 30 M) @home",
+                "Play drums (2h 30 Min) @home",
+                "Play drums (2H 30 min) @home"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(150), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(150), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(150), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(150), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(150), results150Min);
         }
 
         [TestMethod]
@@ -237,23 +170,16 @@ namespace NaturalLanguageTimespanParser.UnitTests
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Czas po polsku (5 minut) @home");
-            var parseResult2 = sut.Parse("Czas po polsku (5 MINUT) @home");
-            var parseResult3 = sut.Parse("Czas po polsku (5 MiNuT) @home");
-            var parseResult4 = sut.Parse("Czas po polsku (5minut) @home");
+            var results5Min = ParseMany(sut, new List<string>
+            {
+                "Czas po polsku (5 minut) @home",
+                "Czas po polsku (5 MINUT) @home",
+                "Czas po polsku (5 MiNuT) @home",
+                "Czas po polsku (5minut) @home"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(5), results5Min);
         }
 
         [TestMethod]
@@ -263,23 +189,24 @@ namespace NaturalLanguageTimespanParser.UnitTests
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Some string [5m] @home");
-            var parseResult2 = sut.Parse("Some string (5m) @gym");
-            var parseResult3 = sut.Parse("Some string {5m} @market");
-            var parseResult4 = sut.Parse("Some string (5m) (different thing in a bracket)");
+            var results5Min = ParseMany(sut, new List<string>
+            {
+                "Some string [5m] @home",
+                "Some string (5m) @gym",
+                "Some string {5m} @market",
+                "Some string (5m) (different thing in a bracket)",
+                "Some string (5 M) test",
+                "Some string (5 m) test",
+                "Some string (5 min) test",
+                "Some string (5 MIN) test",
+                "Some string {5 M} test",
+                "Some string [5 m} test",
+                "Some string {5 min] test",
+                "Some string [5 MIN) test"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(5), results5Min);
         }
 
         [TestMethod]
@@ -289,29 +216,40 @@ namespace NaturalLanguageTimespanParser.UnitTests
             var sut = CreateSystemUnderTest();
 
             // Act
-            var parseResult1 = sut.Parse("Some string [5m]");
-            var parseResult2 = sut.Parse("Some string (5m)");
-            var parseResult3 = sut.Parse("Some string {5m}");
-            var parseResult4 = sut.Parse("Some string (different thing in a bracket) (5m)");
+            var results5Min = ParseMany(sut, new List<string>
+            {
+                "Some string [5m]",
+                "Some string (5m)",
+                "Some string {5m}",
+                "Some string (5m)",
+                "Some string (5 M)",
+                "Some string (5 m)",
+                "Some string (5 min)",
+                "Some string (5 MIN)",
+                "Some string {5 M}",
+                "Some string [5 m}",
+                "Some string {5 min]",
+                "Some string [5 MIN)"
+            });
 
             // Assert
-            Assert.IsTrue(parseResult1.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult1.Duration);
-
-            Assert.IsTrue(parseResult2.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult2.Duration);
-
-            Assert.IsTrue(parseResult3.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult3.Duration);
-
-            Assert.IsTrue(parseResult4.Success);
-            Assert.AreEqual(TimeSpan.FromMinutes(5), parseResult4.Duration);
+            AssertAllDurationsEqual(TimeSpan.FromMinutes(5), results5Min);
         }
 
 
-        private ITimespanParser CreateSystemUnderTest()
+        private static ITimespanParser CreateSystemUnderTest()
         {
             return new TimespanParser();
+        }
+
+        private static TimespanParseResult[] ParseMany(ITimespanParser sut, IEnumerable<string> inputs)
+        {
+            return inputs.Select(sut.Parse).ToArray();
+        }
+
+        private static void AssertAllDurationsEqual(TimeSpan expected, IEnumerable<TimespanParseResult> actual)
+        {
+            foreach (var result in actual) Assert.AreEqual(expected, result.Duration);
         }
     }
 }
