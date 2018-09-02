@@ -13,7 +13,7 @@ namespace NaturalLanguageTimespanParser.Parsers
         ///     Regex to find patterns indicating time duration, for example: (1h 30 min)
         /// </summary>
         private static readonly Regex RegexFindTime = new Regex(
-            @"(?<time1>[\d,\.]+)(\s*?)(?<unit1>h|hour|minut[eay]|minut|min|m)([s\s]|\z|\)|\]|}|"")((\s*?)(?<time2>[\d,\.]+)(\s*?)(?<unit2>minutes|minut[eay]|minut|min|m))?",
+            @"(?<time1>[\d,\.]+)(\s*?)(?<unit1>h|hour|minute|minut|min|m)([s\s]|\z|\)|\]|}|"")((\s*?)(?<time2>[\d,\.]+)(\s*?)(?<unit2>minutes|minute|minut|min|m))?",
             RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.CultureInvariant);
 
 

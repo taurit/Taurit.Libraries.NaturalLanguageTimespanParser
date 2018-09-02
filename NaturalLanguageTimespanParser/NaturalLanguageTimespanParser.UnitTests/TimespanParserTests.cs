@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace NaturalLanguageTimespanParser.UnitTests
 {
     [TestClass]
-    public class TimespanParserTests : TimespanParserTestsBase
+    public class TimespanParserTests
     {
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
