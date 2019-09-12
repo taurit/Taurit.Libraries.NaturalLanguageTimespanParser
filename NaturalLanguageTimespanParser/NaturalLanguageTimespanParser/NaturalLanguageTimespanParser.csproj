@@ -11,8 +11,7 @@
     <RepositoryUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>natural, language, timespan, duration, interval, period, parser</PackageTags>
-    <Description>A simple library that attempts to convert a timespan expressed in a natural human langage into the machine-friendly representation (a TimeSpan object).</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <Description>A simple library that attempts to convert a timespan expressed in a natural human language into the machine-friendly representation (a TimeSpan object).</Description>
     <Copyright>Taurit</Copyright>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
