@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.2</Version>
+    <Version>0.0.3-beta</Version>
     <Authors>Paweł Bulwan</Authors>
     <Company>Taurit</Company>
     <PackageId>Taurit.Libraries.NaturalLanguageTimespanParser</PackageId>
@@ -12,12 +12,20 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>natural, language, timespan, duration, interval, period, parser</PackageTags>
     <Description>A simple library that attempts to convert a timespan expressed in a natural human langage into the machine-friendly representation (a TimeSpan object).</Description>
-    <PackageLicenseUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>Taurit</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
