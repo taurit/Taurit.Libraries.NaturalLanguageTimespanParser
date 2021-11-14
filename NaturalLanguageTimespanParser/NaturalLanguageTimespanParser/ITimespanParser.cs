@@ -1,9 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿namespace NaturalLanguageTimespanParser;
 
-namespace NaturalLanguageTimespanParser
+public interface ITimespanParser
 {
-    public interface ITimespanParser
-    {
-        TimespanParseResult Parse([NotNull] string naturalLanguageTimeSpan);
-    }
+    TimespanParseResult Parse(string naturalLanguageTimeSpan);
 }

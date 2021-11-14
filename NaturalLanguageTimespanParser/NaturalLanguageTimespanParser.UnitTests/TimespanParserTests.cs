@@ -1,23 +1,20 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace NaturalLanguageTimespanParser.UnitTests
+namespace NaturalLanguageTimespanParser.UnitTests;
+
+[TestClass]
+public class TimespanParserTests
 {
-    [TestClass]
-    public class TimespanParserTests
+    [ExpectedException(typeof(ArgumentNullException))]
+    [TestMethod]
+    public void When_NullIsPassedAsACulture_Expect_Exception()
     {
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void When_NullIsPassedAsACulture_Expect_Exception()
-        {
-            // Arrange
-            // ReSharper disable once AssignNullToNotNullAttribute
-            var sut = new TimespanParser(null);
+        // Arrange
+        var sut = new TimespanParser(null!);
 
-            // Act
+        // Act
 
-            // Assert
-            Assert.Fail("This call line should not have been reached");
-        }
+        // Assert
+        Assert.Fail("This call line should not have been reached");
     }
 }

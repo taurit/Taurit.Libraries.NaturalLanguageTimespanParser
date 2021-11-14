@@ -30,6 +30,10 @@ namespace NaturalLanguageTimespanParser.Parsers
 
             if (!match.Success) return TimespanParseResult.CreateFailure();
 
+            // make sure there is no another, conflicting duration defined in the same string - then we wouldn't know which one to choose
+            var nextMatch = match.NextMatch();
+            if (nextMatch.Success) return TimespanParseResult.CreateFailure();
+
             if (decimal.TryParse(match.Groups["time1"].Value, NumberStyles.Any, CultureInfo.InvariantCulture,
                 out var quantity))
             {

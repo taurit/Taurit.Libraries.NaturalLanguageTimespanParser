@@ -1,23 +1,20 @@
-﻿using System;
-using System.Globalization;
-using JetBrains.Annotations;
+﻿using System.Globalization;
 using NaturalLanguageTimespanParser.Parsers;
 
-namespace NaturalLanguageTimespanParser
+namespace NaturalLanguageTimespanParser;
+
+public class TimespanParser : ITimespanParser
 {
-    public class TimespanParser : ITimespanParser
+    private readonly ICultureSpecificParser _parser;
+
+    public TimespanParser(CultureInfo culture)
     {
-        private readonly ICultureSpecificParser _parser;
+        if (culture == null) throw new ArgumentNullException(nameof(culture));
+        _parser = ParserFactory.GetParserForCulture(culture);
+    }
 
-        public TimespanParser([NotNull] CultureInfo culture)
-        {
-            if (culture == null) throw new ArgumentNullException(nameof(culture));
-            _parser = ParserFactory.GetParserForCulture(culture);
-        }
-
-        public TimespanParseResult Parse(string naturalLanguageTimeSpan)
-        {
-            return _parser.Parse(naturalLanguageTimeSpan);
-        }
+    public TimespanParseResult Parse(string naturalLanguageTimeSpan)
+    {
+        return _parser.Parse(naturalLanguageTimeSpan);
     }
 }
