@@ -35,7 +35,7 @@ namespace NaturalLanguageTimespanParser.UnitTests.CultureSpecificParsersTests
 
             // Arrange
             var sut = CreateSystemUnderTest();
-            List<string> sentences = new List<string>()
+            List<string> sentences = new()
             {
                 "@home Read for zero minutes",
                 "@home Read for one minute",
