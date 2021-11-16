@@ -9,11 +9,17 @@ public class MultiCultureTimespanParser : ITimespanParser
 
     public MultiCultureTimespanParser(IEnumerable<CultureInfo> cultures)
     {
-        if (cultures == null) throw new ArgumentNullException(nameof(cultures));
+        if (cultures == null)
+        {
+            throw new ArgumentNullException(nameof(cultures));
+        }
+
         var culturesAsList = cultures.ToList();
 
         if (!culturesAsList.Any())
+        {
             throw new ArgumentException("At least one culture must be specified");
+        }
 
         _parsers = culturesAsList.Select(ParserFactory.GetParserForCulture).ToList();
     }
@@ -24,7 +30,10 @@ public class MultiCultureTimespanParser : ITimespanParser
         foreach (var parser in _parsers)
         {
             var parseResult = parser.Parse(naturalLanguageTimeSpan);
-            if (parseResult.Success) return parseResult;
+            if (parseResult.Success)
+            {
+                return parseResult;
+            }
         }
 
         return TimespanParseResult.CreateFailure();

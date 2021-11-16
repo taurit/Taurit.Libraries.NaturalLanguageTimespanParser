@@ -1,6 +1,5 @@
-﻿namespace NaturalLanguageTimespanParser.Parsers
+﻿namespace NaturalLanguageTimespanParser.Parsers;
+
+internal interface ICultureSpecificParser : ITimespanParser
 {
-    internal interface ICultureSpecificParser : ITimespanParser
-    {
-    }
 }

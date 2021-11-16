@@ -1,6 +1,5 @@
-﻿namespace NaturalLanguageTimespanParser.Parsers
+﻿namespace NaturalLanguageTimespanParser.Parsers;
+
+internal class TimespanParserPl : TimespanParserEn
 {
-    internal class TimespanParserPl : TimespanParserEn
-    {
-    }
 }

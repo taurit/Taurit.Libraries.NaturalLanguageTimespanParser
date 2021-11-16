@@ -9,7 +9,11 @@ public class TimespanParser : ITimespanParser
 
     public TimespanParser(CultureInfo culture)
     {
-        if (culture == null) throw new ArgumentNullException(nameof(culture));
+        if (culture == null)
+        {
+            throw new ArgumentNullException(nameof(culture));
+        }
+
         _parser = ParserFactory.GetParserForCulture(culture);
     }
 

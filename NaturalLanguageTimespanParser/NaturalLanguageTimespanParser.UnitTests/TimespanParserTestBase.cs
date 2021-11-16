@@ -11,13 +11,14 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results20Min = ParseMany(sut, new List<string>
-        {
-            "Review english lesson @home 20m",
-            "Review english lesson @home 20M",
-            "Review english lesson @home 20 m",
-            "Review english lesson @home 20 M"
-        });
+        var results20Min = ParseMany(sut,
+            new List<string>
+            {
+                "Review english lesson @home 20m",
+                "Review english lesson @home 20M",
+                "Review english lesson @home 20 m",
+                "Review english lesson @home 20 M"
+            });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromMinutes(20), results20Min);
@@ -30,21 +31,22 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results5Min = ParseMany(sut, new List<string>
-        {
-            "Some string [5m]",
-            "Some string (5m)",
-            "Some string {5m}",
-            "Some string (5m)",
-            "Some string (5 M)",
-            "Some string (5 m)",
-            "Some string (5 min)",
-            "Some string (5 MIN)",
-            "Some string {5 M}",
-            "Some string [5 m}",
-            "Some string {5 min]",
-            "Some string [5 MIN)"
-        });
+        var results5Min = ParseMany(sut,
+            new List<string>
+            {
+                "Some string [5m]",
+                "Some string (5m)",
+                "Some string {5m}",
+                "Some string (5m)",
+                "Some string (5 M)",
+                "Some string (5 m)",
+                "Some string (5 min)",
+                "Some string (5 MIN)",
+                "Some string {5 M}",
+                "Some string [5 m}",
+                "Some string {5 min]",
+                "Some string [5 MIN)"
+            });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromMinutes(5), results5Min);
@@ -114,13 +116,8 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results1H = ParseMany(sut, new List<string>
-        {
-            "Exercise @gym 1h",
-            "Exercise @gym 1H",
-            "Exercise @gym 1 h",
-            "Exercise @gym 1 H"
-        });
+        var results1H = ParseMany(sut,
+            new List<string> { "Exercise @gym 1h", "Exercise @gym 1H", "Exercise @gym 1 h", "Exercise @gym 1 H" });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromHours(1), results1H);
@@ -133,13 +130,11 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results30Min = ParseMany(sut, new List<string>
-        {
-            "Exercise @gym 0.5h",
-            "Exercise @gym 0.5H",
-            "Exercise @gym 0.5 H",
-            "Exercise @gym 0.5 h"
-        });
+        var results30Min = ParseMany(sut,
+            new List<string>
+            {
+                "Exercise @gym 0.5h", "Exercise @gym 0.5H", "Exercise @gym 0.5 H", "Exercise @gym 0.5 h"
+            });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromMinutes(30), results30Min);
@@ -153,13 +148,14 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results150Min = ParseMany(sut, new List<string>
-        {
-            "Play drums (2h 30 m) @home",
-            "Play drums (2 H 30 M) @home",
-            "Play drums (2h 30 Min) @home",
-            "Play drums (2H 30 min) @home"
-        });
+        var results150Min = ParseMany(sut,
+            new List<string>
+            {
+                "Play drums (2h 30 m) @home",
+                "Play drums (2 H 30 M) @home",
+                "Play drums (2h 30 Min) @home",
+                "Play drums (2H 30 min) @home"
+            });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromMinutes(150), results150Min);
@@ -173,21 +169,22 @@ public abstract class TimespanParserTestsBase
         var sut = CreateSystemUnderTest();
 
         // Act
-        var results5Min = ParseMany(sut, new List<string>
-        {
-            "Some string [5m] @home",
-            "Some string (5m) @gym",
-            "Some string {5m} @market",
-            "Some string (5m) (different thing in a bracket)",
-            "Some string (5 M) test",
-            "Some string (5 m) test",
-            "Some string (5 min) test",
-            "Some string (5 MIN) test",
-            "Some string {5 M} test",
-            "Some string [5 m} test",
-            "Some string {5 min] test",
-            "Some string [5 MIN) test"
-        });
+        var results5Min = ParseMany(sut,
+            new List<string>
+            {
+                "Some string [5m] @home",
+                "Some string (5m) @gym",
+                "Some string {5m} @market",
+                "Some string (5m) (different thing in a bracket)",
+                "Some string (5 M) test",
+                "Some string (5 m) test",
+                "Some string (5 min) test",
+                "Some string (5 MIN) test",
+                "Some string {5 M} test",
+                "Some string [5 m} test",
+                "Some string {5 min] test",
+                "Some string [5 MIN) test"
+            });
 
         // Assert
         AssertAllDurationsEqual(TimeSpan.FromMinutes(5), results5Min);
@@ -215,7 +212,10 @@ public abstract class TimespanParserTestsBase
 
     protected static void AssertAllDurationsEqual(TimeSpan expected, IEnumerable<TimespanParseResult> actual)
     {
-        foreach (var result in actual) Assert.AreEqual(expected, result.Duration);
+        foreach (var result in actual)
+        {
+            Assert.AreEqual(expected, result.Duration);
+        }
     }
 
     internal abstract ITimespanParser CreateSystemUnderTest();
