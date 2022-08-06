@@ -2,6 +2,7 @@
 
 namespace NaturalLanguageTimespanParser.UnitTests;
 
+[TestClass]
 public abstract class TimespanParserTestsBase
 {
     [TestMethod]
@@ -53,14 +54,16 @@ public abstract class TimespanParserTestsBase
     }
 
 
-    [TestMethod]
-    public void When_TimeIsNotDefined_Expect_ParseDoesNotSucceed()
+    [DataTestMethod]
+    [DataRow("@home Read a book")]
+    [DataRow("lalala ccccccc. M xxxxxxx")]
+    public void When_TimeIsNotDefined_Expect_ParseDoesNotSucceed(string content)
     {
         // Arrange
         var sut = CreateSystemUnderTest();
 
         // Act
-        var parseResult = sut.Parse("@home Read a book");
+        var parseResult = sut.Parse(content);
 
         // Assert
         Assert.IsFalse(parseResult.Success);

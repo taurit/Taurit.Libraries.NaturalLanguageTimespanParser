@@ -1,35 +1,36 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>0.0.4-beta</Version>
-		<Authors>Paweł Bulwan</Authors>
-		<Company>Taurit</Company>
-		<PackageId>Taurit.Libraries.NaturalLanguageTimespanParser</PackageId>
-		<PackageProjectUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser.git</RepositoryUrl>
-		<RepositoryType>Git</RepositoryType>
-		<PackageTags>natural, language, timespan, duration, interval, period, parser</PackageTags>
-		<Description>A simple library that attempts to convert a timespan expressed in a natural human language into the machine-friendly representation (a TimeSpan object).</Description>
-		<Copyright>Taurit</Copyright>
-		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.4-beta</Version>
+    <Authors>Paweł Bulwan</Authors>
+    <Company>Taurit</Company>
+    <PackageId>Taurit.Libraries.NaturalLanguageTimespanParser</PackageId>
+    <PackageProjectUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/taurit/Taurit.Libraries.NaturalLanguageTimespanParser.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>natural, language, timespan, duration, interval, period, parser</PackageTags>
+    <Description>A simple library that attempts to convert a timespan expressed in a natural human language into the machine-friendly representation (a TimeSpan object).</Description>
+    <Copyright>Taurit</Copyright>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="SonarAnalyzer.CSharp" Version="8.43.0.51858">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

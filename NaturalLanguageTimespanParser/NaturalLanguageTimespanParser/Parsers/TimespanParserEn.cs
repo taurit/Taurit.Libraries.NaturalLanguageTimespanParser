@@ -30,7 +30,7 @@ internal class TimespanParserEn : ICultureSpecificParser
         var totalMinutes = 0;
         var match = RegexFindTime.Match(naturalLanguageTimeSpan);
 
-        if (!match.Success)
+        if (!match.Success || !Regex.Match(match.Captures[0].Value, @"\d").Success)
         {
             return TimespanParseResult.CreateFailure();
         }
