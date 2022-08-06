@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.4-beta</Version>
+    <Version>0.0.5-beta</Version>
     <Authors>Paweł Bulwan</Authors>
     <Company>Taurit</Company>
     <PackageId>Taurit.Libraries.NaturalLanguageTimespanParser</PackageId>
