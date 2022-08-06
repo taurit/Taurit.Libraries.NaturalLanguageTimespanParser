@@ -46,7 +46,9 @@ public abstract class TimespanParserTestsBase
                 "Some string {5 M}",
                 "Some string [5 m}",
                 "Some string {5 min]",
-                "Some string [5 MIN)"
+                "Some string [5 MIN)",
+                "lalala ccccccc. M xxxxxxx (5 min)",
+                "lalala ccccccc. h xxxxxxx (5 min)"
             });
 
         // Assert

@@ -28,20 +28,13 @@ internal class TimespanParserEn : ICultureSpecificParser
         // it's pretty limited and to add support for more natural language forms it needs to be implemented differently (however, tests for all the new supported scenarios should be added first)
 
         var totalMinutes = 0;
-        var match = RegexFindTime.Match(naturalLanguageTimeSpan);
-
-        if (!match.Success || !Regex.Match(match.Captures[0].Value, @"\d").Success)
-        {
+        var matches = RegexFindTime.Matches(naturalLanguageTimeSpan);
+        // there is an edge case in my regex that's hard to fix; here's a workaround
+        var reasonableMatches = matches.Where(x => x.Captures[0].ToString().Any(char.IsDigit)).ToList();
+        if (reasonableMatches.Count != 1)
             return TimespanParseResult.CreateFailure();
-        }
 
-        // make sure there is no another, conflicting duration defined in the same string - then we wouldn't know which one to choose
-        var nextMatch = match.NextMatch();
-        if (nextMatch.Success)
-        {
-            return TimespanParseResult.CreateFailure();
-        }
-
+        var match = reasonableMatches.Single();
         if (decimal.TryParse(match.Groups["time1"].Value, NumberStyles.Any, CultureInfo.InvariantCulture,
                 out var quantity))
         {
