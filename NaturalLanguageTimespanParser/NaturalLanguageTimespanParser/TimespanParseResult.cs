@@ -1,16 +1,7 @@
 ﻿namespace NaturalLanguageTimespanParser;
 
-public struct TimespanParseResult
+public record TimespanParseResult(bool Success, TimeSpan Duration)
 {
-    private TimespanParseResult(bool success, TimeSpan duration)
-    {
-        Success = success;
-        Duration = duration;
-    }
-
-    public bool Success { get; }
-    public TimeSpan Duration { get; }
-
     internal static TimespanParseResult CreateSuccess(TimeSpan duration)
     {
         return new TimespanParseResult(true, duration);
