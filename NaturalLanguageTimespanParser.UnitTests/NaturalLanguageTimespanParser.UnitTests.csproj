@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\NaturalLanguageTimespanParser\NaturalLanguageTimespanParser.csproj" />
+	  <ProjectReference Include="..\NaturalLanguageTimespanParser.csproj" />
 	</ItemGroup>
 
 </Project>
