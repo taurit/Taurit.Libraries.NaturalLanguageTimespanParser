@@ -159,7 +159,8 @@ public class TimespanParserTests
         var result = sut.Parse(input);
 
         // Assert
-        result.Should().Be(expectedOutputMinutes);
+        result.Success.Should().BeTrue();
+        result.Duration.TotalMinutes.Should().Be(expectedOutputMinutes);
     }
 
     [DataTestMethod]

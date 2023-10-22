@@ -34,7 +34,7 @@ public class TimespanParser
             return TimespanParseResult.CreateFailure();
 
         var match = reasonableMatches.Single();
-        if (decimal.TryParse(match.Groups["time1"].Value, NumberStyles.Any, CultureInfo.InvariantCulture,
+        if (decimal.TryParse(match.Groups["time1"].Value.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture,
                 out var quantity))
         {
             var unit = match.Groups["unit1"].Value;
