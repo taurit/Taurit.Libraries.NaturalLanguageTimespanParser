@@ -1,14 +1,13 @@
 # Taurit.Libraries.NaturalLanguageTimespanParser
-This library allows to convert a time span expressed in a **natural language** into the **machine-friendly representation** (eg. in seconds, minutes, hours).
 
-I use it mostly with regard to my todo list, for example to collect stats about the total estimated time of tasks on my todo list.
+## About
 
+This library allows to convert a time span expressed in a **natural language** (in English) into the **machine-friendly representation** (a .NET TimeSpan object).
 
-# Examples
+## Examples
 
 ```cs
-var englishCulture = new CultureInfo("en");
-var timespanParser = new TimespanParser(englishCulture);
+var timespanParser = new TimespanParser();
 
 // example 1
 TimespanParseResult result1 = timespanParser.Parse("Review english lesson @home 20m");
@@ -28,4 +27,4 @@ TimespanParseResult result4 = timespanParser.Parse("Play drums (2h 30 Min) @home
 // result4.Duration == {02:30:00}
 ```
 
-More examples are available in unit tests files in the source :)
+More examples are available in unit tests files in the source.
