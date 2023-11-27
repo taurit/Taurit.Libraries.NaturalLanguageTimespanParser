@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0-beta</Version>
     <Authors>Paweł Bulwan</Authors>
@@ -19,31 +18,29 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="NaturalLanguageTimespanParser.UnitTests\**" />
     <EmbeddedResource Remove="NaturalLanguageTimespanParser.UnitTests\**" />
     <None Remove="NaturalLanguageTimespanParser.UnitTests\**" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="LICENSE.txt">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>
+      </PackagePath>
     </None>
     <None Include="README.md">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>
+      </PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp" Version="9.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="LICENSE.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -52,5 +49,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
